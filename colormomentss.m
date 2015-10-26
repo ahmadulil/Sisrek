@@ -1,4 +1,4 @@
-function [ meana,stda,skewa ] = colormomentss( image )
+function out = colormomentss( image )
 [x,y,z]=size(image);
 jumpix=x+y;
 
@@ -26,11 +26,10 @@ skewa(2)=skew.^(1/3);
 skew=(sum(sum(plateb-meana(3)).^3))/jumpix;
 skewa(3)=skew.^(1/3);
 meana(1)
- means=mean(double(plater(:)))
- stdr=std(double(plater(:)));
-stdr
-stda
-skewa
+means=mean(double(plater(:)))
+stdr=std(double(plater(:)));
+
+out=[meana(1),meana(2),meana(3),stda(1),stda(2),stda(3),skewa(1),skewa(2),skewa(3)];
 
 
 % skew = sum((GLs - meanGL) .^ 3 .* pixelCounts) / ((numberOfPixels - 1) * stdDev^3);
