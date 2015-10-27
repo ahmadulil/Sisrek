@@ -11,8 +11,8 @@ for i=1:h
         matrik2(img(i,j),img(i,j+1))=matrik2(img(i,j),img(i,j+1))+1;
     end
 end
-maxi=max(max(matrik2));
-matrik2=(matrik2)/maxi;
+sumi=sum(sum(matrik2));
+matrik2=(matrik2)./sumi;
 asm=sum(sum(matrik2.^2));
 energi=asm.^(1/2);
 [i,j]=size(matrik2);
@@ -24,7 +24,7 @@ meanj=0;
 for k=1:i
     for l=1:j
         contras=contras+(k-l).^2*matrik2(k,l);
-        entropi=-1*entropi+matrik2(i,j)*log(matrik2(k,l));
+%         entropi=entropi-matrik2(i,j)*log(matrik2(k,l));
         homogen=homogen+matrik2(k,l)/(1+(k-l).^2);
         meani=meani+k*matrik2(k,l);
 		meanj=meanj+l*matrik2(k,l);
@@ -47,7 +47,5 @@ for k=1:i
 	variansi=variansi+(k-meani)*(l-meanj)*matrik2(k,l);
 	end
 end
-
-out=[asm,energi,contras,entropi,homogen,korelasi,variansi];
-
+out=[asm,energi,contras,homogen,korelasi,variansi];
 end

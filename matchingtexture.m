@@ -1,5 +1,5 @@
-function hasil = matching(input)
-load modelmoment.mat
+function hasil = matchingtexture(input)
+load modeltexture.mat
 ind=0;
 for i=1:4
 	for j=1:6
@@ -7,10 +7,12 @@ for i=1:4
 		d(ind,:)=model(i,j,:);
 	end
 end
-
 for i=1:24
 	ha(i)=norm(d(i)-input);
 end
 [id,da]=sort(ha);
+
 hasil=da(1);
+id(1);
 end
+

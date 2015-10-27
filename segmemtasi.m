@@ -16,6 +16,7 @@ map(5,:)=[8,7,6,5,4,3,2,1];
 map(6,:)=[1,8,7,6,5,4,3,2];
 map(7,:)=[2,1,8,7,6,5,4,3];
 map(8,:)=[3,2,1,8,7,6,5,4];
+input2=input;
 input=im2bw(input);
 input=(~input);
 jumlah=0;
@@ -67,7 +68,7 @@ for i=1:m
                 maxl=max(lebar());
                 visi(minp:maxp,minl:maxl)=2;
                 jumlah=jumlah+1;
-                imwrite(input(minp:maxp,minl:maxl),strcat(num2str(jumlah),'.jpg'));
+                imwrite(input2(minp:maxp,minl:maxl,:),strcat(num2str(jumlah),'.jpg'));
         end
     end
 end
