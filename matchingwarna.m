@@ -1,10 +1,10 @@
 function hasil = matchingwarna(input)
-load modelwarna.mat
+load model.mat
 ind=0;
 for i=1:4
 	for j=1:6
 		ind=ind+1;
-		d(ind,:)=model(i,j,:);
+		d(ind,:)=warna(i,j,:);
 	end
 end
 

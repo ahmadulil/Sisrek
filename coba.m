@@ -117,8 +117,8 @@ for i=1:s
     
     if (hasil1 == hasil2 || hasil1==hasil3 )
         hasil=hasil1;
-    elseif(hasil2 == hasil3)
-        hasil=hasil2;
+%     elseif(hasil2 == hasil3)
+%         hasil=hasil2;
     else
         hasil=5;
     end
@@ -256,8 +256,8 @@ Nama_model(5).Nama='Unknown'; Nama_model(5).Jumlah=0;
     hasil3
     if (hasil1 == hasil2 || hasil1==hasil3 )
         hasil=hasil1;
-    elseif(hasil2 == hasil3)
-        hasil=hasil2;
+%     elseif(hasil2 == hasil3)
+%         hasil=hasil2;
     else
         hasil=5;
     end
@@ -332,7 +332,7 @@ for i=1:ind
     if hasil1==asli
         benar=benar+1;
     end
-    Nama_model(hasil1).Jumlah=Nama_model(hasil1).Jumlah+1;
+    Nama_model(hasil).Jumlah=Nama_model(hasil).Jumlah+1;
 end
 for i=1:5
     output(i)={[strcat(Nama_model(i).Nama,'=',num2str(Nama_model(i).Jumlah))]};

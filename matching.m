@@ -1,5 +1,5 @@
 function hasil = matching(input)
-load modelmoment.mat
+load model.mat
 ind=0;
 for i=1:4
 	for j=1:6

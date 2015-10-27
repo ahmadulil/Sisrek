@@ -1,36 +1,39 @@
 clc;
 clear;
-ind=0;
 for i=1:6
-    nama=strcat('C:\Users\Asprak-69\Documents\Sisrek Ulil\Tugas US\Sisrek\Sisrek_1103120013_1103120012\Data\apple\Latih_Apple_1103120013_1103120012_0 ',int2str(i),'.bmp');
-    a=im2bw(imread(nama));
+    nama=strcat('C:\Users\Asprak-69\Documents\Sisrek Ulil\Tugas US\Sisrek\Sisrek_1103124323_1103120090\Apple\Latih_Apple_1103124323_0 ',int2str(i),'.bmp');
+    img=imread(nama);
+	a=im2bw(img);
     a=(~a);
     model(1,i,:)=ekstraksi(a);
-    ind=ind+1;
-    namamodel(ind).nama='Apel';
+	warna(1,i,:)=colorMoments(img);
+	tekstur(1,i,:)=glcm(img);
 end
 for i=1:6
-    nama=strcat('C:\Users\Asprak-69\Documents\Sisrek Ulil\Tugas US\Sisrek\Sisrek_1103120013_1103120012\Data\Dataset Pear\Data Latih Pear\Latih_Pear_1103120013_0 ',int2str(i),'.bmp');
-    a=im2bw(imread(nama));
+    nama=strcat('C:\Users\Asprak-69\Documents\Sisrek Ulil\Tugas US\Sisrek\Sisrek_1103124323_1103120090\Pear\Latih_Pear_1103124323_0 ',int2str(i),'.bmp');
+    img=imread(nama);
+	a=im2bw(img);
     a=(~a);
     model(2,i,:)=ekstraksi(a);
-    ind=ind+1;
-    namamodel(ind).nama='Pear';
+	warna(2,i,:)=colorMoments(img);
+	tekstur(2,i,:)=glcm(img);
 end
 for i=1:6
-    nama=strcat('C:\Users\Asprak-69\Documents\Sisrek Ulil\Tugas US\Sisrek\Sisrek_1103120013_1103120012\Data\Dataset Strawberry\Data Latih Strawberry\Latih_Strawberry_1103120013_0 ',int2str(i),'.bmp');
-    a=im2bw(imread(nama));
+    nama=strcat('C:\Users\Asprak-69\Documents\Sisrek Ulil\Tugas US\Sisrek\Sisrek_1103124323_1103120090\Stoberi\Latih_Stoberi_1103124323_0 ',int2str(i),'.bmp');
+    img=imread(nama);
+	a=im2bw(img);
     a=(~a);
     model(3,i,:)=ekstraksi(a);
-    ind=ind+1;
-    namamodel(ind).nama='Strawbery';
+	warna(3,i,:)=colorMoments(img);
+	tekstur(3,i,:)=glcm(img);
 end
 for i=1:6
-    nama=strcat('C:\Users\Asprak-69\Documents\Sisrek Ulil\Tugas US\Sisrek\Sisrek_1103120013_1103120012\Data\Pisang\Latih_Banana_1103120013_1103120012_0 ',int2str(i),'.bmp');
-    a=im2bw(imread(nama));
+    nama=strcat('C:\Users\Asprak-69\Documents\Sisrek Ulil\Tugas US\Sisrek\Sisrek_1103124323_1103120090\Banana\Latih_Banana_1103124323_0 ',int2str(i),'.bmp');
+    img=imread(nama);
+	a=im2bw(img);
     a=(~a);
     model(4,i,:)=ekstraksi(a);
-    ind=ind+1;
-    namamodel(ind).nama='Pisang';
+	warna(4,i,:)=colorMoments(img);
+	tekstur(4,i,:)=glcm(img);
 end
-save('modelmoment.mat','model','namamodel');
+save('model.mat','model','tekstur','warna');

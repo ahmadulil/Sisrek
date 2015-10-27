@@ -1,6 +1,6 @@
 function out = glcm(img)
 img=rgb2gray(img);
-img=gray2ind(img,4);
+% img=gray2ind(img,8);
 [h w]=size(img);
 img=img+1;
 maks=max(max(img));
@@ -12,9 +12,12 @@ for i=1:h
     end
 end
 sumi=sum(sum(matrik2));
+matrik2=graycomatrix(img);
 matrik2=(matrik2)./sumi;
-asm=sum(sum(matrik2.^2));
-energi=asm.^(1/2);
+% asm=sum(sum(matrik2.^2));
+% energi=asm.^(1/2);
+kuadrat = matrik2.^2;
+energi = sum(kuadrat(:));
 [i,j]=size(matrik2);
 contras=0;
 entropi=0;
@@ -23,9 +26,10 @@ meani=0;
 meanj=0;
 for k=1:i
     for l=1:j
-        contras=contras+(k-l).^2*matrik2(k,l);
+        contras=contras+abs(k-l).^2*matrik2(k,l);
 %         entropi=entropi-matrik2(i,j)*log(matrik2(k,l));
-        homogen=homogen+matrik2(k,l)/(1+(k-l).^2);
+%         homogen=homogen+matrik2(k,l)/(1+(k-l).^2);
+        homogen=homogen+matrik2(k,l)/(1+abs(k-l));
         meani=meani+k*matrik2(k,l);
 		meanj=meanj+l*matrik2(k,l);
 	end
@@ -39,13 +43,18 @@ for k=1:i
 	end
 end
 
+stdi=sqrt(vri);
+stdj=sqrt(vrj);
+
 korelasi=0;
 variansi=0;
 for k=1:i
     for l=1:j
-	korelasi=korelasi+((k-meani)*(l-meanj))/(vri*vrj).^(1/2);
-	variansi=variansi+(k-meani)*(l-meanj)*matrik2(k,l);
+    korelasi=korelasi+[(k-meani)*(l-meanj)*matrik2(k,l)]/(stdi*stdj);
+% 	korelasi=korelasi+((k-meani)*(l-meanj))/(vri*vrj).^(1/2);
+% 	variansi=variansi+(k-meani)*(l-meanj)*matrik2(k,l);
 	end
 end
-out=[asm,energi,contras,homogen,korelasi,variansi];
+
+out=[energi,contras,homogen,korelasi];
 end
