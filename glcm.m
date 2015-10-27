@@ -1,4 +1,4 @@
-function matrik2 = glcm(img)
+function out = glcm(img)
 img=rgb2gray(img);
 img=gray2ind(img,4);
 [h w]=size(img);
@@ -16,17 +16,37 @@ matrik2=(matrik2)/maxi;
 asm=sum(sum(matrik2.^2));
 energi=asm.^(1/2);
 [i,j]=size(matrik2);
-meana1=mean2(matrik2);
 contras=0;
 entropi=0;
 homogen=0;
+meani=0;
+meanj=0;
 for k=1:i
     for l=1:j
         contras=contras+(k-l).^2*matrik2(k,l);
         entropi=-1*entropi+matrik2(i,j)*log(matrik2(k,l));
         homogen=homogen+matrik2(k,l)/(1+(k-l).^2);
-        corelasi=corelasi+((k-meani(1))*(l-meani(2))*(matrik2(i,j))/(stdi(1)*stdi(2));
-    end
-end
+        meani=meani+k*matrik2(k,l);
+		meanj=meanj+l*matrik2(k,l);
+	end
 end
 
+for k=1:i
+    for l=1:j
+		vri=vri+matrik2(k,l)*(k-meani).^2;
+		vrj=vrj+matrik2(k,l)*(k-meanj).^2;
+	end
+end
+
+korelasi=0;
+variansi=0;
+for k=1:i
+    for l=1:j
+	korelasi=korelasi+((k-meani)*(l-meanj))/(vri*vrj).^(1/2);
+	variansi=variansi+(k-meani)*(l-meanj)*matrik2(k,l);
+	end
+end
+
+out=[asm,energi,contras,entropi,homogen,korelasi,variansi];
+
+end
