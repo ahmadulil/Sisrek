@@ -30,7 +30,8 @@ for k=1:i
 		meanj=meanj+l*matrik2(k,l);
 	end
 end
-
+vri=0;
+vrj=0;
 for k=1:i
     for l=1:j
 		vri=vri+matrik2(k,l)*(k-meani).^2;
